@@ -5,7 +5,7 @@
 1. Clone the repository:
 
     ```shell
-    git clone https://github.com/your-username/game.git
+    git clone hhttps://github.com/asagilmore/staticsurfer.git
     ```
 
 2. Install the required dependencies by running the following command:
