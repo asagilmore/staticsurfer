@@ -58,6 +58,7 @@ while running:
     display.player(p1.x,p1.y,p1.dir,30)
 
 
+    display.update()
     # Convert display.pixels to a 3D numpy array with shape (height, width, 3)
     pixels = np.array(display.pixels)
     pixels = np.stack([pixels]*3, axis=-1)  # Repeat the pixel values for the R, G, and B channels
@@ -68,10 +69,6 @@ while running:
 
     # Update the display
     pg.display.flip()
-
-    print(f'x: {p1.x}')
-    print(f'y: {p1.y}')
-    print(f'dir: {p1.dir}')
 
 
 

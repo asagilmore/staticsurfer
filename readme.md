@@ -21,3 +21,14 @@ To run the game, navigate to the project directory and execute the main.py file:
     ```shell
     python main.py
     ```
+
+## How to Play
+
+Use the arrow keys to control the player character:
+
+- Press the up arrow key to move forward.
+- Press the down arrow key to move backwards.
+- Press the left arrow key to turn left.
+- Press the right arrow key to turn right.
+
+Enjoy the game!

@@ -1,17 +1,33 @@
 import math
 import numpy as np
 import random
+import copy
 
 class Display:
 
     ## pixles are stored as pix[y][x]
     def __init__(self,xres,yres):
         self.pixels = [[round(random.random()) for j in range(xres)] for i in range(yres)]
+        self.toChange = [[False for j in range(xres)] for i in range(yres)]
+        self.justChanged = [[False for j in range(xres)] for i in range(yres)]
+
+    ## takes pixels to change and applies them to the screen
+    def update(self):
+        for y in range(len(self.pixels)):
+            for x in range(len(self.pixels[y])):
+                if self.toChange[y][x] and not self.justChanged[y][x]:
+                    self.pixels[y][x] = abs(self.pixels[y][x] -1)
+                    self.toChange[y][x] = False
+                    self.justChanged[y][x] = True
+                elif self.justChanged[y][x] and not self.toChange[y][x]:
+                    self.justChanged[y][x] = False
+                elif self.justChanged[y][x] and self.toChange[y][x]:
+                    self.toChange[y][x] = False
 
     def box(self,x1,y1,x2,y2):
         for i in range(abs(x2-x1)):
             for j in range(abs(y2-y1)):
-                self.pixels[i][j] = abs(self.pixels[i][j] - 1)
+                self.toChange[i][j] = True
 
     def line(self, x1, y1, x2, y2, thickness=1):
         points = []
@@ -36,7 +52,7 @@ class Display:
     ## switches value of pixels at point
     def point(self,x,y):
         if(x >= 0 and y >= 0 and x < len(self.pixels[0]) and y < len(self.pixels)):
-            self.pixels[x][y] = abs(self.pixels[x][y]-1)
+            self.toChange[x][y] = True
 
     def circle(self, x0, y0, radius):
         x = radius
